@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leave-system
+  labels:
+    app: leave-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: leave-system
+  template:
+    metadata:
+      labels:
+        app: leave-system
+    spec:
+      containers:
+      - name: leave-system
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: web-content
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: web-content
+        configMap:
+          name: leave-system-files
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: leave-system-service
+spec:
+  selector:
+    app: leave-system
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: leave-system-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - your-domain.com
+    secretName: leave-system-tls
+  rules:
+  - host: your-domain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: leave-system-service
+            port:
+              number: 80 

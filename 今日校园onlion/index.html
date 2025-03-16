@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Mirrored from jrxyym.github.io/请假v2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 Mar 2025 05:36:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/css.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+    <title>请假详情</title>
+</head>
+<body>
+    <!-- 新的顶部导航栏 -->
+    <div id="top-nav">
+        <div class="nav-container">
+            <div class="nav-back">
+                <span class="nav-back-icon">&lt;</span>
+            </div>
+            <div class="nav-title">请假详情</div>
+            <div class="nav-feedback">反馈</div>
+        </div>
+    </div>
+    
+    <!-- 原有的导航标签 -->
+    <div id="top">
+        <span id="qjxx">请假信息</span>
+        <span id="hyewm">核验二维码</span>
+    </div>
+    <div id="two">
+        <img id="wenhao" src="img/%e9%97%ae%e5%8f%b7.png"/>
+        <span id="rhxj">如何销假？</span>
+    </div>
+    <div id="three">
+        <img id="dui" src="img/%e5%af%b9.png" />
+        <span id="sp">审批已通过</span><span id="grxx">个人信息 ></span>
+        <div id="zzxjz">正在休假中</div>
+    </div>
+    <!-- 滚动 -->
+    <div id="scroll">
+        <div id="scroll-outer" class="scroll__outer">
+            <div id="scroll-inner" class="scroll__inner">
+              <div class="scroll__text" id="first"></div>
+              <div class="scroll__text" id="last-text"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 请假类型 -->
+    <div id="five">
+        <div class="abs lab left_len" id="qjlx">请假类型:</div><div class="abs" id="sj">济南校区：不离校</div>
+        <div class="abs lab" id="xylx">需要离校:</div><div class="abs" id="s">是</div>
+        <div class="abs lab left_len" id="xjgz">销假规则:</div><div class="abs" id="lx">离校、非离校请假需要销假 <span class="ck" id="gzck">查看 ></span></div>
+        <div class="abs lab left_len" id="sjxjsj">实际休假时间:</div><div class="abs" id="_">-</div>
+    </div>
+
+    <div id="seven">
+        <div class="abs left_len title">我的 请假申请</div>
+        <div class="abs lab left_len" id="kssj">开始时间:</div><div class="abs left_len2" id="kssj2">04-02 17:30</div>
+        <div class="abs lab left_len" id="jssj">结束时间:</div><div class="abs left_len2" id="jssj2">04-02 18:30</div>
+        <div class="abs lab left_len splc" >审批流程:</div><div class="abs left_len2 splc">共1步 <span class="ck" id="lcck">查看 ></span></div>
+        <div class="abs lab left_len qjyy" >请假原因:</div><div class="abs left_len2 qjyy">想在宿舍睡大觉了</div>
+        <div class="abs lab left_len fqwz" >发起位置:</div><div class="abs left_len2 fqwz" id="wz">中国山东省济南市槐荫区段店镇</div>
+        <div class="abs lab left_len csr" >抄送人:</div><div class="abs left_len2 csr">无</div>
+        <div class="abs lab left_len ssxx" >宿舍信息:</div><div class="abs left_len2 ssxx">济南宿舍-一号公寓（男）-101-1</div>
+        <div class="abs lab left_len qjlx2" >请假类型:</div><div class="abs left_len2 qjlx2">事假</div>
+        <div class="abs left_len" id="cn">本人承诺填写的信息真实有效，并对本次提交请假的信息真实性负责。</div>
+        <span id="time_len">3小时30分钟</span>
+    </div>
+
+    <div id="nine">
+        <div class="abs left_len title">审批流程记录</div>
+        <div class="abs left_len" id="fqr"><img src="img/%e8%93%9d%e5%9c%88.png" class="quan"> 张三 - 发起申请</div><div class="abs lab" id="fqsj">04-02 11:54</div>
+        <div class="abs left_len" id="spr"><img src="img/%e7%bb%bf%e5%9c%88.png" class="quan"> 一级:&nbsp; 李四 - 审批<span id="tg">通过</span></div><div class="abs lab" id="spsj">04-02 17:34</div>
+        <div id="spyj">审批意见: 无</div>
+    </div>
+
+    <table>
+        <tr><td class="tdo" id="zf">转发</td><td class="tdo" id="ch">撤回</td><td id="qxj">去销假</td></tr>
+    </table>
+    <!-- 信息显示框 -->
+    <div id="infoBox"></div>
+
+    <!-- 智能客服标签 -->
+    <div id="kf-btn">
+        <div class="kf-headset-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="headset-svg">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"></path>
+                <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                <path d="M18 16v4"></path>
+                <path d="M18 20c1.5 0 2 1 2 2"></path>
+            </svg>
+        </div>
+        <div class="kf-text">智<br>能<br>客<br>服</div>
+    </div>
+
+    <!-- 聊天窗口 -->
+    <div id="kf-chat" style="display: none;">
+        <div class="kf-chat-header">
+            <span>智能客服</span>
+            <span class="kf-close">×</span>
+        </div>
+        <div class="kf-chat-body">
+            <div class="kf-message kf-message-left">
+                您好，请问有什么可以帮您？
+            </div>
+            <div class="kf-message kf-message-left">
+                请告诉我您的问题，我会尽快回复您。
+            </div>
+        </div>
+        <div class="kf-chat-footer">
+            <input type="text" class="kf-input" placeholder="请输入问题...">
+            <button class="kf-send">发送</button>
+        </div>
+    </div>
+
+</body>
+<script src="script/public.js"></script>
+<script src="script/js.js"></script>
+<script>
+    // 智能客服点击事件
+    document.getElementById('kf-btn').addEventListener('click', function() {
+        document.getElementById('kf-chat').style.display = 'block';
+        this.style.display = 'none';
+    });
+
+    // 关闭聊天窗口
+    document.querySelector('.kf-close').addEventListener('click', function() {
+        document.getElementById('kf-chat').style.display = 'none';
+        document.getElementById('kf-btn').style.display = 'flex';
+    });
+
+    // 发送消息
+    document.querySelector('.kf-send').addEventListener('click', function() {
+        const input = document.querySelector('.kf-input');
+        const message = input.value.trim();
+        
+        if (message) {
+            const chatBody = document.querySelector('.kf-chat-body');
+            const userMessage = document.createElement('div');
+            userMessage.className = 'kf-message kf-message-right';
+            userMessage.textContent = message;
+            chatBody.appendChild(userMessage);
+            
+            // 清空输入框
+            input.value = '';
+            
+            // 自动回复
+            setTimeout(function() {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'kf-message kf-message-left';
+                botMessage.textContent = '感谢您的咨询，我们会尽快处理您的问题。';
+                chatBody.appendChild(botMessage);
+                
+                // 滚动到底部
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1000);
+            
+            // 滚动到底部
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    });
+
+    // 按回车发送消息
+    document.querySelector('.kf-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            document.querySelector('.kf-send').click();
+        }
+    });
+    
+    // 新导航栏功能
+    document.querySelector('.nav-back').addEventListener('click', function() {
+        // 返回上一页
+        window.history.back();
+        // 如果没有上一页，可以提供一个默认行为
+        setTimeout(function() {
+            if (document.referrer === '') {
+                alert('这是第一个页面，无法返回');
+            }
+        }, 300);
+    });
+    
+    // 修改反馈按钮为编辑文本功能
+    document.querySelector('.nav-feedback').addEventListener('click', function() {
+        // 切换编辑状态
+        if (this.textContent === '反馈') {
+            // 启用编辑模式
+            const textElements = document.querySelectorAll('div, span, td, p, h1, h2, h3, h4, h5, h6');
+            textElements.forEach(element => {
+                // 跳过特定元素
+                if (element.classList.contains('nav-feedback') || 
+                    element.id === 'infoBox' ||
+                    element.tagName.toLowerCase() === 'script') {
+                    return;
+                }
+                element.contentEditable = 'true';
+                element.style.outline = '1px dashed #ccc';
+            });
+            this.textContent = '保存';
+            this.style.color = '#ff6b6b';
+        } else {
+            // 关闭编辑模式
+            const textElements = document.querySelectorAll('[contenteditable="true"]');
+            textElements.forEach(element => {
+                element.contentEditable = 'false';
+                element.style.outline = 'none';
+            });
+            this.textContent = '反馈';
+            this.style.color = '#3C9DF9';
+            alert('文本修改已保存！（仅在本次会话中有效）');
+        }
+    });
+</script>
+
+<!-- Mirrored from jrxyym.github.io/请假v2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 Mar 2025 05:36:47 GMT -->
+</html>

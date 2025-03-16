@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/xiaojia.css">
+    <title>销假</title>
+    <!-- 内联添加编辑功能 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+    <script>
+        // 页面加载完成后初始化编辑功能
+        window.addEventListener('DOMContentLoaded', function() {
+            // 创建编辑按钮
+            const editButton = document.createElement('button');
+            editButton.id = 'quickEditBtn';
+            editButton.innerText = '编辑文本';
+            editButton.style.position = 'fixed';
+            editButton.style.top = '10px';
+            editButton.style.right = '10px';
+            editButton.style.zIndex = '9999';
+            editButton.style.padding = '8px 15px';
+            editButton.style.backgroundColor = '#4CAF50';
+            editButton.style.color = 'white';
+            editButton.style.border = 'none';
+            editButton.style.borderRadius = '4px';
+            editButton.style.cursor = 'pointer';
+            
+            // 添加到页面
+            document.body.appendChild(editButton);
+            
+            // 添加点击事件
+            editButton.addEventListener('click', function() {
+                if (this.innerText === '编辑文本') {
+                    // 启用编辑模式
+                    const textElements = document.querySelectorAll('div, span, td, p, h1, h2, h3, h4, h5, h6');
+                    textElements.forEach(element => {
+                        // 跳过特定元素
+                        if (element.id === 'quickEditBtn' || 
+                            element.id === 'infoBox' ||
+                            element.tagName.toLowerCase() === 'script') {
+                            return;
+                        }
+                        element.contentEditable = 'true';
+                        element.style.outline = '1px dashed #ccc';
+                    });
+                    this.innerText = '保存文本';
+                    this.style.backgroundColor = '#2196F3';
+                } else {
+                    // 关闭编辑模式
+                    const textElements = document.querySelectorAll('[contenteditable="true"]');
+                    textElements.forEach(element => {
+                        element.contentEditable = 'false';
+                        element.style.outline = 'none';
+                    });
+                    this.innerText = '编辑文本';
+                    this.style.backgroundColor = '#4CAF50';
+                    alert('文本修改已保存！（仅在本次会话中有效）');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- 附件 -->
+    <div id="fj">
+        <span id="xing">*</span> 
+        <span>添加附件</span>
+        <div id="camera">
+            <img id="xji" src="./img/相机.png" />
+            <div id="imgnum">0/10</div>
+        </div>
+    </div>
+    <!-- 定位 -->
+    <div id="dw">
+        <div id="dingwei">定位</div>
+        <div id="loc">广东省广州市番禺区大学城广药路</div>
+        <div id="reloc">重新定位</div>
+    </div>
+
+    <div id="confirm">确认销假</div>
+
+    <!-- 信息显示框 -->
+    <div id="infoBox"></div>
+</body>
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+<script src="./script/editable.js"></script> -->
+</html>

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: leave-system-files
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>今日校园请假系统</title>
+    </head>
+    <body>
+        <!-- 这里会被实际的项目文件替换 -->
+    </body>
+    </html> 

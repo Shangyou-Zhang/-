@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/css.css"/>
+    <link rel="stylesheet" href="./style/twodcode.css"/>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+    <title>请假详情</title>
+    <!-- 内联添加编辑功能 -->
+    <script>
+        // 页面加载完成后初始化编辑功能
+        window.addEventListener('DOMContentLoaded', function() {
+            // 创建编辑按钮
+            const editButton = document.createElement('button');
+            editButton.id = 'quickEditBtn';
+            editButton.innerText = '编辑文本';
+            editButton.style.position = 'fixed';
+            editButton.style.top = '10px';
+            editButton.style.right = '10px';
+            editButton.style.zIndex = '9999';
+            editButton.style.padding = '8px 15px';
+            editButton.style.backgroundColor = '#4CAF50';
+            editButton.style.color = 'white';
+            editButton.style.border = 'none';
+            editButton.style.borderRadius = '4px';
+            editButton.style.cursor = 'pointer';
+            
+            // 添加到页面
+            document.body.appendChild(editButton);
+            
+            // 添加点击事件
+            editButton.addEventListener('click', function() {
+                if (this.innerText === '编辑文本') {
+                    // 启用编辑模式
+                    const textElements = document.querySelectorAll('div, span, td, p, h1, h2, h3, h4, h5, h6');
+                    textElements.forEach(element => {
+                        // 跳过特定元素
+                        if (element.id === 'quickEditBtn' || 
+                            element.id === 'infoBox' ||
+                            element.tagName.toLowerCase() === 'script') {
+                            return;
+                        }
+                        element.contentEditable = 'true';
+                        element.style.outline = '1px dashed #ccc';
+                    });
+                    this.innerText = '保存文本';
+                    this.style.backgroundColor = '#2196F3';
+                } else {
+                    // 关闭编辑模式
+                    const textElements = document.querySelectorAll('[contenteditable="true"]');
+                    textElements.forEach(element => {
+                        element.contentEditable = 'false';
+                        element.style.outline = 'none';
+                    });
+                    this.innerText = '编辑文本';
+                    this.style.backgroundColor = '#4CAF50';
+                    alert('文本修改已保存！（仅在本次会话中有效）');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="top">
+        <span id="qjxx">请假信息</span>
+        <span id="hyewm">核验二维码</span>
+    </div>
+    <div id="two">
+        <span id="rhxj">请出示专属核验二维码，用于验证请假单真伪</span>
+    </div>
+    <div id="three">
+        <img id="dui" src="./img/对.png" />
+        <span id="sp">审批已通过</span>
+        <div id="zzxjz">正在休假中</div>
+        <div id="grxx">个人信息 ></div>
+    </div>
+    <!-- 滚动 -->
+    <div id="scroll">
+        <div id="scroll-outer" class="scroll__outer">
+            <div id="scroll-inner" class="scroll__inner">
+              <div class="scroll__text" id="first"></div>
+              <div class="scroll__text" id="last-text"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 当前时间 -->
+    <div id="four">当前时间:2022-04-02 17:51:50</div>
+
+    <!-- 二维码 -->
+    <div id="twod">
+        <img class="twodi" src="./img/2d4.png"/>
+    </div>
+
+    <div id="yzzw">请使用辅导猫扫码核验请假单真伪</div>
+
+    <div id="dqsj">当前时间:2022-10-01 23:13:06</div>
+
+    <!-- 信息显示框 -->
+    <div id="infoBox"></div>
+
+</body>
+<script src="./script/public.js"></script>
+<script src="./script/twodcode.js"></script>
+<!-- <script src="./script/editable.js"></script> -->
+</html>
